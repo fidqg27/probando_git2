@@ -41,6 +41,26 @@
                 $_SESSION['apellido']=$row[1];
                 $_SESSION['username']=$row[2];
                 require_once 'pantalla.php';
+                et($_POST['password']))
+    {
+        $un_temp = mysql_entities_fix_string($conexion, $_POST['username']);
+        $pw_temp = mysql_entities_fix_string($conexion, $_POST['password']);
+        $query   = "SELECT * FROM usuarios WHERE username='$un_temp'";
+        $result  = $conexion->query($query);
+        
+        if (!$result) die ("Usuario no encontrado");
+        elseif ($result->num_rows)
+        {
+            $row = $result->fetch_array(MYSQLI_NUM);
+            $result->close();
+
+            if (password_verify($pw_temp, $row[3])) 
+            {
+                session_start();
+                $_SESSION['nombre']=$row[0];
+                $_SESSION['apellido']=$row[1];
+                $_SESSION['username']=$row[2];
+                require_once 'pantalla.
   
 
         
