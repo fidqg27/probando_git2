@@ -27,6 +27,13 @@
                 require_once 'pantalla.php';
             }
             else {
+                {
+                    session_start();
+                    $_SESSION['nombre']=$row[0];
+                    $_SESSION['apellido']=$row[1];
+                    $_SESSION['username']=$row[2];
+                    require_once 'pantalla.php';
+                }
                 echo "Usuario/password incorrecto <p><a href='signup.php'>
             Registrarse</a></p>";
             }
