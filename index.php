@@ -3,6 +3,16 @@
     $conexion = new mysqli($hn, $un, $pw, $db, $port);
 
     if($conexion->connect_error) die("Error fatal");
+    function mysql_entities_fix_string($conexion, $string)
+    {
+        return htmlentities(mysql_fix_string($conexion, $string));
+      }
+    function mysql_fix_string($conexion, $string)
+    {
+ = stripslashes($string);
+        return $conexion->real_escape_string($string);
+      }  
+      
 
     if (isset($_POST['username'])&&
         isset($_POST['password']))
@@ -25,23 +35,7 @@
                 $_SESSION['apellido']=$row[1];
                 $_SESSION['username']=$row[2];
                 require_once 'pantalla.php';
-            }
-            else {
-                {
-                    session_start();
-                    $_SESSION['nombre']=$row[0];
-                    $_SESSION['apellido']=$row[1];
-                    $_SESSION['username']=$row[2];
-                    require_once 'pantalla.php';
-                }
-                echo "Usuario/password incorrecto <p><a href='signup.php'>
-            Registrarse</a></p>";
-            }
-        }
-        else {
-          echo "Usuario/password incorrecto <p><a href='signup.php'>
-      Registrarse</a></p>";
-      }
+  
 
         
     }
