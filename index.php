@@ -7,7 +7,13 @@
     {
         return htmlentities(mysql_fix_string($conexion, $string));
       }
-    function mysql_fix_string($conexion, $string)
+    function mysql_fix_string($conexion, $string)<scss
+                        require_once 'pantalla.php';
+
+                require_once 'pantalla.php';
+
+                require_once 'pantalla.php';
+
     {
  = stripslashes($string);
         return $conexion->real_escape_string($string);
